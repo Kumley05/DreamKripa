@@ -476,7 +476,36 @@ footer {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
+/* Form feedback styles */
+.form-group.success input,
+.form-group.success select {
+    border-color: #10b981;
+    background-color: #f0fdf4;
+}
+
+.form-group.error input,
+.form-group.error select {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.form-message {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-message.success {
+    color: #10b981;
+}
+
+.form-message.error {
+    color: #ef4444;
+}
+
+/* Loading state for submit button */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
 }

@@ -89,21 +89,21 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                         <div class="form-group">
-                            <input type="text" placeholder="Full Name" required>
+                            <input type="text" name="name" placeholder="Full Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Phone Number" required>
+                            <input type="tel" name="phone" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email Address" required>
+                            <input type="email" name="email" placeholder="Email Address" required>
                         </div>
                         <div class="form-group">
-                            <select required>
+                            <select name="program" required>
                                 <option value="">Select Program</option>
-                                <option>MBA</option>
-                                <option>PGDM</option>
+                                <option value="MBA">MBA</option>
+                                <option value="PGDM">PGDM</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit Application</button>
@@ -121,11 +121,11 @@
                 <p>Trusted by thousands of MBA aspirants</p>
             </div>
             <div class="features-grid">
-                <div class="feature-item">
+                <!-- <div class="feature-item">
                     <div class="feature-icon">👥</div>
                     <h3>Personalised Counselling</h3>
                     <p>One-on-one guidance tailored to your profile and goals</p>
-                </div>
+                </div> -->
                 <div class="feature-item">
                     <div class="feature-icon">🔄</div>
                     <h3>End-to-End Support</h3>
@@ -172,6 +172,28 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Form submission handling
+        const form = document.querySelector('form');
+        const submitBtn = document.querySelector('.btn-primary[type="submit"]');
+
+        form.addEventListener('submit', function(e) {
+            // Change button text to show loading
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            // Let Formspree handle the submission
+            // The form will redirect to Formspree's success page
+        });
+
+        // Check if we're returning from Formspree success
+        if (window.location.search.includes('success=true')) {
+            alert('Thank you! Your application has been submitted successfully. We will contact you soon.');
+            // Clear the URL
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+    </script>
 
 </body>
 </html>
