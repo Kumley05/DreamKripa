@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <form action="https://formspree.io/f/xkogdykv" method="POST">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Full Name" required>
                         </div>
@@ -174,7 +174,7 @@
     </footer>
 
     <script>
-        // Form submission handling
+        // Form submission handling with better feedback
         const form = document.querySelector('form');
         const submitBtn = document.querySelector('.btn-primary[type="submit"]');
 
@@ -183,14 +183,21 @@
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            // Let Formspree handle the submission
-            // The form will redirect to Formspree's success page
+            // Show loading state
+            submitBtn.style.background = '#fbbf24';
+            submitBtn.style.opacity = '0.8';
         });
 
         // Check if we're returning from Formspree success
         if (window.location.search.includes('success=true')) {
-            alert('Thank you! Your application has been submitted successfully. We will contact you soon.');
+            alert('✅ Thank you! Your application has been submitted successfully. We will contact you within 24 hours.');
             // Clear the URL
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+
+        // Check for form errors
+        if (window.location.search.includes('errors')) {
+            alert('❌ There was an error submitting your form. Please try again or contact us directly.');
             window.history.replaceState(null, null, window.location.pathname);
         }
     </script>
